@@ -1,4 +1,4 @@
-# Bazel Test Engine Example
+# Bazel+ Buildkite Test Engine Example
 
 An example Buildkite pipeline making use of a patched `bktec` and `test-collector-buildkite-plugin` to invoke bazel tests with BKTEC and send the results to BKTE.
 
