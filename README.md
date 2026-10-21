@@ -9,4 +9,5 @@ An example Buildkite pipeline making use of a patched `bktec` and `test-collecto
 ## Implementation Details
 
 - The BKTEC binary is a bazel dependency that's built with bazel, and then used to run tests.
-- The patched `bktec` binary includes support for parsing Bazel BEP proto files, and the forked plugin reuses `bktec` to process BEP files (without reimplementing proto handling again in the plugin)
+- BKTEC handles the upload to BKTE itself now; since the `tests` plugin relies on this functionality, this works seamlessly
+    - note that implementing this in the other [test collector plugin](https://github.com/buildkite-plugins/test-collector-buildkite-plugin) would require reusing the BEP and test xml parsing in `bktec`, but that's possible in theory, and I proved that out [here](https://github.com/buildkite-plugins/test-collector-buildkite-plugin/compare/main...zachgrayio:test-collector-buildkite-plugin:main) but against an older version of the `bktec` fork, and that standalone processing subcommand is now removed.
