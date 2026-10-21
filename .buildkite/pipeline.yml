@@ -1,6 +1,6 @@
 steps:
   - label: "Bazel tests: bktec_direct"
-    parallelism: 2
+    parallelism: 1
     env:
       BUILDKITE_TEST_ENGINE_SUITE_SLUG: "bktec-bazel-example"
       BUILDKITE_TEST_ENGINE_UPLOAD_RESULTS: "true"
@@ -15,7 +15,7 @@ steps:
       - "./bktec run --test-runner bazel"
 
   - label: "Bazel tests: tests plugin"
-    parallelism: 2
+    parallelism: 1
     # env:
     #   BUILDKITE_TEST_ENGINE_RESULT_PATH: "custom-bep-path.pb"
     command:
