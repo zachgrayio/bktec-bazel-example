@@ -15,9 +15,9 @@ go_deps.module(
 )
 go_deps.archive_override(
     path = "github.com/buildkite/test-engine-client/v2",
-    sha256 = "add274db0ce4c0be7ba8daeb8728c437449b027bf66a1d8ad80f95736759e375",
-    strip_prefix = "test-engine-client-a41672fc5fb3e64b393cf6e71395e7235eda0478",
-    urls = ["https://github.com/zachgrayio/test-engine-client/archive/a41672fc5fb3e64b393cf6e71395e7235eda0478.tar.gz"],
+    sha256 = "0bbb905bc64b346740cae8de6206bd723f01f35c3375e67bf816cfa9a7cf66c5",
+    strip_prefix = "test-engine-client-7cc9d6a9ea8387c89121b1f05b4d5c7f60d96222",
+    urls = ["https://github.com/zachgrayio/test-engine-client/archive/7cc9d6a9ea8387c89121b1f05b4d5c7f60d96222.tar.gz"],
 )
 go_deps.gazelle_override(
     directives = ["gazelle:go_naming_convention go_default_library"],
@@ -28,4 +28,9 @@ go_deps.gazelle_override(
     directives = ["gazelle:proto disable_global"],
     path = "github.com/aspect-build/aspect-cli",
 )
-use_repo(go_deps, "com_github_aspect_build_aspect_cli", "com_github_buildkite_roko", "com_github_buildkite_test_engine_client_v2", "com_github_davecgh_go_spew", "com_github_google_go_cmp", "com_github_kballard_go_shellquote", "com_github_kr_pretty", "com_github_mattn_go_runewidth", "com_github_olekukonko_tablewriter", "com_github_pmezard_go_difflib", "com_github_rivo_uniseg", "com_github_rogpeppe_go_internal", "com_github_stretchr_testify", "com_github_urfave_cli_v3", "dev_drjosh_zzglob", "in_gopkg_check_v1", "in_gopkg_yaml_v3", "org_golang_google_protobuf", "org_golang_x_mod")
+go_deps.gazelle_override(
+    build_file_generation = "clean",
+    directives = ["gazelle:proto disable_global"],
+    path = "github.com/bazel-contrib/bazelrc-parser-go",
+)
+use_repo(go_deps, "com_github_aspect_build_aspect_cli", "com_github_bazel_contrib_bazelrc_parser_go", "com_github_buildkite_roko", "com_github_buildkite_test_engine_client_v2", "com_github_davecgh_go_spew", "com_github_google_go_cmp", "com_github_google_shlex", "com_github_kballard_go_shellquote", "com_github_kr_pretty", "com_github_mattn_go_runewidth", "com_github_olekukonko_tablewriter", "com_github_pmezard_go_difflib", "com_github_rivo_uniseg", "com_github_rogpeppe_go_internal", "com_github_stretchr_testify", "com_github_urfave_cli_v3", "dev_drjosh_zzglob", "in_gopkg_check_v1", "in_gopkg_yaml_v3", "org_golang_google_protobuf", "org_golang_x_exp", "org_golang_x_mod")
