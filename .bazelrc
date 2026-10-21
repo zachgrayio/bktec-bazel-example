@@ -1,0 +1,7 @@
+common --announce_rc
+
+build:ci --color=no
+build:ci --curses=no
+
+test:ci --test_output=errors
+test:ci --build_event_binary_file=build-events.pb

@@ -1,0 +1,4 @@
+/bazel-*
+/build-events.json
+/build-events.pb
+/build-events-plugin.pb

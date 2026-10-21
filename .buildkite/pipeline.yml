@@ -1,0 +1,31 @@
+steps:
+  - label: "Bazel tests: bktec_direct"
+    parallelism: 2
+    env:
+      BUILDKITE_TEST_ENGINE_SUITE_SLUG: "bktec-bazel-example"
+      BUILDKITE_TEST_ENGINE_UPLOAD_RESULTS: "true"
+      BUILDKITE_TEST_ENGINE_OIDC_LIFETIME: "2h"
+      BUILDKITE_TEST_ENGINE_BAZEL_QUERY: "tests(//example/bktec_direct/...)"
+      # note: only using nocache here for the flaky demonstration
+      BUILDKITE_TEST_ENGINE_BAZEL_FLAGS: "--config=ci --nocache_test_results"
+      # BUILDKITE_TEST_ENGINE_RESULT_PATH: "custom-bep-path.pb"
+    command:
+      # nb: build the forked bktec and make it available at the location the checked in ./bktec symlink points to
+      - "bazel build @com_github_buildkite_test_engine_client_v2//:v2"
+      - "./bktec run --test-runner bazel"
+
+  - label: "Bazel tests: tests plugin"
+    parallelism: 2
+    # env:
+    #   BUILDKITE_TEST_ENGINE_RESULT_PATH: "custom-bep-path.pb"
+    command:
+      - "bazel build @com_github_buildkite_test_engine_client_v2//:v2"
+      - "./bktec run"
+    plugins:
+      - "https://github.com/zachgrayio/tests-buildkite-plugin.git#9c3babf7633ac027a4d85ffc3f789d97dd86d35d":
+          suite-slug: "bktec-bazel-example"
+          oidc-lifetime: 7200
+          test-runner: bazel
+          bazel-query: "tests(//example/plugin/...)"
+          bazel-flags: "--config=ci --nocache_test_results"
+          install-client: false
