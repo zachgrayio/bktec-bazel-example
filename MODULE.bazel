@@ -15,9 +15,9 @@ go_deps.module(
 )
 go_deps.archive_override(
     path = "github.com/buildkite/test-engine-client/v2",
-    sha256 = "0bbb905bc64b346740cae8de6206bd723f01f35c3375e67bf816cfa9a7cf66c5",
-    strip_prefix = "test-engine-client-7cc9d6a9ea8387c89121b1f05b4d5c7f60d96222",
-    urls = ["https://github.com/zachgrayio/test-engine-client/archive/7cc9d6a9ea8387c89121b1f05b4d5c7f60d96222.tar.gz"],
+    sha256 = "50a5a1472ae1b54dedb8f62b04c6262494a88067efeda83a6f6a97ea3ea52271",
+    strip_prefix = "test-engine-client-c9113da5a7a196680ac89dd3916e879e3226c0c8",
+    urls = ["https://github.com/zachgrayio/test-engine-client/archive/c9113da5a7a196680ac89dd3916e879e3226c0c8.tar.gz"],
 )
 go_deps.gazelle_override(
     directives = ["gazelle:go_naming_convention go_default_library"],
