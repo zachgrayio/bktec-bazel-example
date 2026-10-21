@@ -5,9 +5,12 @@ steps:
       BUILDKITE_TEST_ENGINE_SUITE_SLUG: "bktec-bazel-example"
       BUILDKITE_TEST_ENGINE_UPLOAD_RESULTS: "true"
       BUILDKITE_TEST_ENGINE_OIDC_LIFETIME: "2h"
+      BUILDKITE_TEST_ENGINE_RETRY_COUNT: "4"
+      BUILDKITE_TEST_ENGINE_DISABLE_RETRY_FOR_MUTED_TEST: "true"
       BUILDKITE_TEST_ENGINE_BAZEL_QUERY: "tests(//example/bktec_direct/...)"
       # note: only using nocache here for the flaky demonstration
-      BUILDKITE_TEST_ENGINE_BAZEL_FLAGS: "--config=ci --nocache_test_results"
+      # also, flaky_test_attempts is removed by bktec when calling bazel if RETRY_COUNT>0, this is here to demonstrate that
+      BUILDKITE_TEST_ENGINE_BAZEL_FLAGS: "--config=ci --nocache_test_results --flaky_test_attempts=3"
       # BUILDKITE_TEST_ENGINE_RESULT_PATH: "custom-bep-path.pb"
     command:
       # nb: build the forked bktec and make it available at the location the checked in ./bktec symlink points to
@@ -26,6 +29,8 @@ steps:
           suite-slug: "bktec-bazel-example"
           oidc-lifetime: 7200
           test-runner: bazel
+          retry-count: 4
+          disable-retry-for-muted-test: true
           bazel-query: "tests(//example/plugin/...)"
-          bazel-flags: "--config=ci --nocache_test_results"
+          bazel-flags: "--config=ci --nocache_test_results --flaky_test_attempts=3"
           install-client: false
